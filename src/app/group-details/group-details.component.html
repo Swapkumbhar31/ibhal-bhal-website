@@ -1,0 +1,58 @@
+<div class="group">
+    <button class="btn btn-default"
+        routerLink="/groups"><i class="fa fa-arrow-left"></i></button>
+    <tabset>
+        <tab heading="Information">
+            <div class="cover-image"
+                *ngIf="groupInformation?.group_image"
+                [ngStyle]="{'background-image': 'url(http://iblah-blah.com/iblah/images/'+groupInformation?.group_image +')'}">
+            </div>
+            <div class="info-container d-flex p-2">
+                <div class="image-container"
+                    *ngIf="groupInformation?.group_image"
+                    [ngStyle]="{'background-image':'url('+'http://iblah-blah.com/iblah/images/'+groupInformation?.group_image+')'}">
+                </div>
+                <div class="text-container p-2 position-relative flex-grow-1">
+                    <span class="d-block h4">{{groupInformation?.name}}</span>
+                    <span class="d-block">{{groupInformation?.type === '1' ? 'Public' : ''}} Group - {{groupInformation?.catagory}}</span>
+                    <span class="d-block">{{groupInformation?.description}}</span>
+                    <button class="btn btn-primary position-absolute"
+                        (click)="groupAction()"
+                        style="top: 0; right: 0">
+                        <span *ngIf="groupInformation?.isAdded === 0"><i class="fa fa-plus-square"></i> Join</span>
+                        <span *ngIf="groupInformation?.isAdded === 1"><i class="fa fa-minus-square"></i> Leave</span>
+                        Group</button>
+                </div>
+            </div>
+            <h5 class="p-3"><i class="fa fa-users"></i> Members <span class="float-right">{{getMembersCount()}}</span></h5>
+            <div class="position-relative user-container">
+                <div class="d-flex p-2 position-absolute"
+                    *ngIf="groupMembers && groupMembers.length > 0">
+                    <div class="user-image"
+                        *ngFor="let member of groupMembers"
+                        [ngStyle]="{'background-image':'url('+'http://iblah-blah.com/iblah/images/'+member?.image+')'}">
+                    </div>
+                </div>
+            </div>
+            <h5 class="p-3"><i class="fa fa-users"></i> Admins <span class="float-right">{{getAdminsCount()}}</span></h5>
+            <div class="position-relative user-container">
+                <div class="d-flex p-2 position-absolute"
+                    *ngIf="groupAdmins && groupAdmins.length > 0">
+                    <div class="user-image"
+                        *ngFor="let member of groupAdmins"
+                        [ngStyle]="{'background-image':'url('+'http://iblah-blah.com/iblah/images/'+member?.image+')'}">
+                    </div>
+                </div>
+            </div>
+        </tab>
+        <tab heading="Activity">
+            <p>Activity</p>
+        </tab>
+        <tab heading="Events">
+            <p>Events</p>
+        </tab>
+        <tab heading="Photo">
+            <p>Photos</p>
+        </tab>
+    </tabset>
+</div>

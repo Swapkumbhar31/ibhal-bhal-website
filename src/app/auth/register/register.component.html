@@ -1,0 +1,108 @@
+<div id="register-page">
+  <div class="overlay">
+    <div class="cover"></div>
+  </div>
+  <div class="container-fluid">
+    <div class="row justify-content-md-end align-items-center" id="card-conatiner">
+      <div class="col col-lg-6">
+        <img src="../../../assets/images/logo.png" class="img-fluid img-responsive logo-bg mt-4">
+        <div class="content">
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release
+            of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+            Aldus PageMaker including versions of Lorem Ipsum.
+          </p>
+        </div>
+      </div>
+      <div class="col col-lg-6">
+        <div class="card">
+          <div class="card-body">
+            <h2>Register</h2>
+            <div class="container-fluid" [formGroup]="registerForm">
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="fname" class="d-lg-none">First name:</label>
+                    <input type="text" class="form-control" id="fname" formControlName="fname" (keyup)="nameValueChange()" placeholder="First name">
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="lname" class="d-lg-none">Last name:</label>
+                    <input type="text" class="form-control" id="lname" formControlName="lname" (keyup)="nameValueChange()" placeholder="Last name">
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="email" class="d-lg-none">Email address:</label>
+                    <input type="email" class="form-control" formControlName="email" id="email" placeholder="Email">
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="password" class="d-lg-none">Password:</label>
+                    <input type="password" class="form-control" formControlName="password" id="password" placeholder="Password">
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="cpass" class="d-lg-none">Reenter password:</label>
+                    <input type="password" class="form-control" id="cpassword" formControlName="cpassword" placeholder="Re-enter Password">
+                  </div>
+                </div>
+                <div class="col-3" style="padding-right: 2px;">
+                  <div class="form-group">
+                    <input type="text" class="form-control" id="prefix" formControlName="prefix" (keyup)="contactValueChange()" placeholder="+91">
+                  </div>
+                </div>
+                <div class="col-9" style="padding-left: 2px;">
+                  <div class="form-group">
+                    <input type="number" class="form-control" id="contact" formControlName="phone" (keyup)="contactValueChange()" placeholder="00000 000000">
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="gender" class="d-lg-none">Gender:</label>
+                    <select class="form-control" id="gender" formControlName="gender">
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="lname" class="d-lg-none">Date of birth:</label>
+                    <input type="date" class="form-control" id="lname" formControlName="dob" placeholder="Date of birth">
+                  </div>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary btn-block" (click)="register()">Register</button>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3 text-center justify-content-center">
+              <div class="col-6">
+                <button class="btn btn-link" routerLink="/login">Already have an account</button>
+              </div>
+            </div>
+            <div class="container-fluid text-center">
+              <div class="social-icons row">
+                <div class="col-12">
+                  <p>Or Using</p>
+                </div>
+                <button type="button" class="btn btn-primary col-6">
+                  <fa name="facebook-f" class="mr-2"></fa> Facebook
+                </button>
+                <button type="button" class="btn btn-danger col-6">
+                  <fa name="google-plus-square" class="mr-2"></fa> Google
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

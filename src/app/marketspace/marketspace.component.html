@@ -1,0 +1,22 @@
+<div class="marketspace">
+  <tabset>
+    <tab heading="All Listings"
+      (select)="tabChange('showAllLists')">
+      <app-marketspace-item *ngFor="let list of listing"
+        [list]="list"></app-marketspace-item>
+      <div *ngIf="listing.length === 0"
+        class="no-data">
+        No listing
+      </div>
+    </tab>
+    <tab heading="My Listings"
+      (select)="tabChange('showMyLists')">
+      <app-marketspace-item *ngFor="let list of listing"
+        [list]="list"></app-marketspace-item>
+      <div *ngIf="listing.length === 0"
+        class="no-data">
+        No listing
+      </div>
+    </tab>
+  </tabset>
+</div>

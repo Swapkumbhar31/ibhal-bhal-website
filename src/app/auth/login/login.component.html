@@ -1,0 +1,80 @@
+<div id="loginPage">
+  <div class="overlay">
+    <!-- <img src="assets/images/login.jpg" alt="login"> -->
+    <div class="cover"></div>
+  </div>
+  <div class="container">
+    <div class="row justify-content-md-center align-items-center"
+      id="card-conatiner">
+      <div class="col col-lg-6">
+        <div class="card">
+          <div class="card-body">
+            <h2>Log in</h2>
+            <form (ngSubmit)="login()"
+              [formGroup]="loginForm">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    id="basic-addon1">
+                    <fa name="user"></fa>
+                  </span>
+                </div>
+                <input type="text"
+                  name="email"
+                  formControlName="email"
+                  class="form-control"
+                  placeholder="Username"
+                  aria-label="Username"
+                  aria-describedby="basic-addon1">
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    id="basic-addon1">
+                    <fa name="lock"></fa>
+                  </span>
+                </div>
+                <input type="password"
+                  name="password"
+                  formControlName="password"
+                  class="form-control"
+                  placeholder="Password"
+                  aria-label="Password"
+                  aria-describedby="basic-addon1">
+              </div>
+              <button type="submit"
+                class="btn btn-primary btn-block">Login</button>
+            </form>
+            <div class="row mt-3 text-center">
+              <div class="col-6">
+                <button class="btn btn-link"
+                  (click)="forgot_password()">Forgot password</button>
+              </div>
+              <div class="col-6">
+                <button class="btn btn-link"
+                  routerLink="/register">Signup now</button>
+              </div>
+            </div>
+            <div class="container-fluid text-center">
+              <div class="social-icons row">
+                <div class="col-12">
+                  <p>Or Using</p>
+                </div>
+                <button type="button"
+                  class="btn btn-primary col-6">
+                  <fa name="facebook-f"
+                    class="mr-2"></fa> Facebook
+                </button>
+                <button type="button"
+                  class="btn btn-danger col-6">
+                  <fa name="google-plus-square"
+                    class="mr-2"></fa> Google
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

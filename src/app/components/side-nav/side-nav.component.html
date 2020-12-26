@@ -1,0 +1,121 @@
+<div class="side-nav">
+  <div class="profile container-fluid pt-2 pb-2">
+    <div class="row">
+      <div class="col-4">
+        <div class="image-circle"
+          [ngStyle]="{'background-image':'url('+'http://iblah-blah.com/iblah/images/'+user?.image+')'}">
+        </div>
+      </div>
+      <div class="col-8 d-flex align-items-center">
+        <h4 class="text-capitalize">{{user?.name}}</h4>
+      </div>
+    </div>
+  </div>
+  <div class="list-group">
+    <a href="#"
+      class="list-group-item list-group-item-action"
+      routerLinkActive="active"
+      routerLink="/news-feed">
+      <img src="assets/images/feeds.png"
+        class="icon"
+        alt="news-feed">
+      News feed</a>
+    <a href="#"
+      class="list-group-item list-group-item-action"
+      routerLinkActive="active"
+      routerLink="/groups">
+      <img src="assets/images/groups.png"
+        class="icon"
+        alt="news-feed">
+      Groups</a>
+    <!-- <a href="#"
+      class="list-group-item list-group-item-action"
+      routerLinkActive="active"
+      routerLink="/fourms">
+      <img src="assets/images/fourms.jpg"
+        class="icon"
+        alt="news-feed">
+      Fourms</a> -->
+    <a href="#"
+      class="list-group-item list-group-item-action"
+      routerLinkActive="active"
+      routerLink="/pages">
+      <img src="assets/images/add_pages.png"
+        class="icon"
+        alt="news-feed">
+      Pages</a>
+    <a href="#"
+      class="list-group-item list-group-item-action"
+      routerLinkActive="active"
+      routerLink="/marketplace">
+      <img src="assets/images/market.png"
+        class="icon"
+        alt="news-feed">
+      Marketplace</a>
+    <a href="#"
+      class="list-group-item list-group-item-action"
+      routerLinkActive="active"
+      routerLink="/blogs">
+      <img src="assets/images/blogs.png"
+        class="icon"
+        alt="news-feed">
+      Blogs</a>
+    <a href="#"
+      class="list-group-item list-group-item-action"
+      routerLinkActive="active"
+      routerLink="/music">
+      <img src="assets/images/music.jpg"
+        class="icon"
+        alt="news-feed">
+      Music</a>
+    <a href="#"
+      class="list-group-item list-group-item-action"
+      routerLinkActive="active"
+      routerLink="/events">
+      <img src="assets/images/events.png"
+        class="icon"
+        alt="news-feed">
+      Events</a>
+    <a href="#"
+      class="list-group-item list-group-item-action"
+      routerLinkActive="active"
+      routerLink="/settings">
+      <img src="assets/images/settings.jpg"
+        class="icon"
+        alt="news-feed">
+      Settings</a>
+    <a href="#"
+      class="list-group-item list-group-item-action"
+      routerLinkActive="active"
+      routerLink="/photo">
+      <img src="assets/images/camera.jpg"
+        class="icon"
+        alt="news-feed">
+      Photo</a>
+    <a href="#"
+      class="list-group-item list-group-item-action"
+      routerLinkActive="active"
+      routerLink="/members">
+      <img src="assets/images/members.jpg"
+        class="icon"
+        alt="news-feed">
+      Members</a>
+    <a href="#"
+      class="list-group-item list-group-item-action"
+      routerLinkActive="active"
+      routerLink="/messages">
+      <img src="assets/images/messages.jpg"
+        class="icon"
+        alt="news-feed">
+      Messages</a>
+    <a href="#"
+      class="list-group-item list-group-item-action"
+      routerLinkActive="active"
+      (click)="logout()"
+      routerLink="/login">
+      <img src="assets/images/logout.png"
+        class="icon"
+        alt="news-feed">
+      Logout</a>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="groups">
+  <tabset>
+    <tab heading="Groups"
+      (select)="tabChange('showAllGroups')">
+      <app-group *ngFor="let group of groups"
+        [group]="group"></app-group>
+      <div *ngIf="groups.length === 0"
+        class="no-data">
+        No groups
+      </div>
+    </tab>
+    <tab heading="My Groups"
+      (select)="tabChange('showMyGroups')">
+      <app-group *ngFor="let group of groups"
+        [group]="group"></app-group>
+      <div *ngIf="groups.length === 0"
+        class="no-data">
+        No groups
+      </div>
+    </tab>
+  </tabset>
+</div>

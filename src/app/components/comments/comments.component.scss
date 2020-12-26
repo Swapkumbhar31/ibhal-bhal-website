@@ -1,0 +1,58 @@
+.comments{
+    .comment{
+        border-bottom: #b9b9b9 solid 1px;
+    }
+    .comment, .add-comment{
+        
+        .liked{
+            color: #007bff;
+        }
+    }
+}
+.image-circle {
+    width: 50px;
+    border: 1px solid #00A0DF;
+    height: 40px;
+    background-size: cover;
+    border-radius: 50%;
+    background-position: center;
+}
+.image-circle-2 {
+    width: 80px;
+    border: 1px solid #00A0DF;
+    height: 80px;
+    background-size: cover;
+    border-radius: 10px;
+    background-position: center;
+}
+.comment-buttons{
+    .fa{
+        margin: 5px;
+        color: #007bff;
+        cursor: pointer;
+    }
+}
+.form-control{
+    border-color: #00A0DF;
+    background-color: #b9b9b9;
+    &:focus{
+        box-shadow: none;
+    }
+}
+::-webkit-input-placeholder {
+    padding-left: 5px;
+    font-style: italic;
+ }
+ :-moz-placeholder {
+    padding-left: 5px;
+    font-style: italic;  
+ }
+ ::-moz-placeholder {
+    padding-left: 5px;
+    font-style: italic;  
+ }
+ :-ms-input-placeholder {  
+    padding-left: 5px;
+    font-style: italic; 
+ }
+ 

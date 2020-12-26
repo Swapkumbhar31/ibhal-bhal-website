@@ -1,0 +1,59 @@
+<div class="page">
+  <button class="btn btn-default"
+    routerLink="/pages"><i class="fa fa-arrow-left"></i></button>
+  <tabset>
+    <tab heading="Information">
+      <div class="cover-image"
+        *ngIf="pageInformation?.page_image"
+        [ngStyle]="{'background-image': 'url(http://iblah-blah.com/iblah/images/'+pageInformation?.page_image +')'}">
+      </div>
+      <div class="info-container d-flex p-2">
+        <div class="image-container"
+          *ngIf="pageInformation?.page_image"
+          [ngStyle]="{'background-image':'url('+'http://iblah-blah.com/iblah/images/'+pageInformation?.page_image+')'}">
+        </div>
+        <div class="text-container p-2 position-relative flex-grow-1">
+          <span class="d-block h4">{{pageInformation?.name}}</span>
+          <span class="d-block">{{pageInformation?.type === '1' ? 'Public' : ''}} Page - {{pageInformation?.catagory}}</span>
+          <span class="d-block">{{pageInformation?.description}}</span>
+          <button class="btn btn-primary position-absolute"
+            (click)="pageAction()"
+            style="top: 0; right: 0">
+            <span *ngIf="pageInformation?.isAdded === 0"><i class="fa fa-plus-square"></i> Join</span>
+            <span *ngIf="pageInformation?.isAdded === 1"><i class="fa fa-minus-square"></i> Leave</span>
+            Page</button>
+        </div>
+      </div>
+      <h5 class="p-3"><i class="fa fa-users"></i> Members <span class="float-right">{{getMembersCount()}}</span></h5>
+      <div class="position-relative user-container">
+        <div class="d-flex p-2 position-absolute"
+          *ngIf="pageMembers && pageMembers.length > 0">
+          <div class="user-image"
+            *ngFor="let member of pageMembers"
+            [ngStyle]="{'background-image':'url('+'http://iblah-blah.com/iblah/images/'+member?.image+')'}">
+          </div>
+        </div>
+      </div>
+      <h5 class="p-3"><i class="fa fa-users"></i> Admins <span class="float-right">{{getAdminsCount()}}</span></h5>
+      <div class="position-relative user-container">
+        <div class="d-flex p-2 position-absolute"
+          *ngIf="pageAdmins && pageAdmins.length > 0">
+          <div class="user-image"
+            *ngFor="let member of pageAdmins"
+            [ngStyle]="{'background-image':'url('+'http://iblah-blah.com/iblah/images/'+member?.image+')'}">
+          </div>
+        </div>
+      </div>
+    </tab>
+    <tab heading="Activity">
+      <p>Activity</p>
+    </tab>
+    <tab heading="Events">
+      <p>Events</p>
+    </tab>
+    <tab heading="Photo"
+      (select)="getAllPageImages()">
+      <p>Photos</p>
+    </tab>
+  </tabset>
+</div>

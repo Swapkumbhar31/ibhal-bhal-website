@@ -1,0 +1,16 @@
+<div class="page p-2"
+  [routerLink]="[page?.id]">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-2 col-3">
+        <img [src]="'http://iblah-blah.com/iblah/images/'+page?.page_image"
+          class="img-fluid img-responsive">
+      </div>
+      <div class="col d-flex flex-column justify-content-center p-1">
+        <h6>{{page?.name}}</h6>
+        <span class="count">{{page?.catagory}} . {{page?.memberCount}} <i class="fa fa-thumbs-up"></i></span>
+        <span>{{page?.description}}</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+.feed{
+    .btn{
+        border-radius: 15px;
+    }
+    .image-cropper {
+        width: 100px;
+        border: 1px solid #00A0DF;
+        height: 100px;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center;
+    }
+}
+.share-post-thumb{
+    height: 100px;
+    width: 100px;
+}
+agm-map {
+    height: 300px;
+}
+.backdrop{
+    background-color: rgba($color: #ffffff, $alpha: 0.95);
+    z-index: 2000;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    .btn-close{
+        top: 10px;
+        left: 10px;
+    }
+    .btn-menu{
+        top: 10px;
+        right: 10px;
+    }
+    .img-fluid{
+        max-width: 80%;
+    }
+    @media screen and (max-width: 700px){
+        .img-fluid{
+            max-width: 100%;
+        }
+    }
+    agm-map {
+        width: 100%;
+        height: 80%;
+    }
+    .controls{
+        bottom: 10px;
+        left: 10px;
+    }
+}

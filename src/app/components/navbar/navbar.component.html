@@ -1,0 +1,112 @@
+<nav class="navbar navbar-expand bg-blue">
+  <div class="container d-flex justify-content-between">
+    <a class="navbar-brand"
+      href="javascript:void(0)"
+      routerLink="/news-feed">
+      <i class="fa fa-2x fa-bars"></i>
+    </a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link position-relative"
+          href="javascript:void(0)"
+          id="basic-link"
+          routerLink="/notifications"
+          (click)="false"
+          aria-controls="basic-link-dropdown">
+          <i class="fa fa-2x fa-globe"></i>
+          <span class="badge badge-danger mr-1">{{notificationCount}}</span>
+        </a>
+        <!-- <div id="basic-link-dropdown"
+          *dropdownMenu
+          class="dropdown-menu dropdown-menu-right"
+          role="menu"
+          aria-labelledby="basic-link">
+          <a class="dropdown-item"
+            *ngFor="let notification of notifications"
+            href="javascript:void(0)">
+            <div class="d-flex">
+              <div>
+                <div class="image-circle"
+                  [ngStyle]="{'background-image':'url('+'http://iblah-blah.com/iblah/images/'+notification?.image_id+')'}">
+                </div>
+              </div>
+              <div class="notification flex-grow-1 ml-2">
+                <span class="d-block">
+                  <b>{{notification?.name}}</b>
+                </span>
+                <span class="d-block">{{notification?.msg}} </span>
+              </div>
+            </div>
+          </a>
+        </div> -->
+      </li>
+      <li class="nav-item ml-2">
+        <a class="nav-link  dropdown-toggle"
+          href
+          id="basic-link"
+          dropdownToggle
+          (click)="false"
+          aria-controls="basic-link-dropdown">
+          <i class="fa fa-map-marker fa-2x"></i>
+        </a>
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link  dropdown-toggle"
+          href
+          id="basic-link"
+          dropdownToggle
+          (click)="false"
+          aria-controls="basic-link-dropdown">
+          <i class="fa fa-search fa-2x"></i>
+        </a>
+      </li>
+      <li class="nav-item dropdown"
+        dropdown
+        placement="bottom right">
+        <a class="nav-link  dropdown-toggle"
+          href
+          id="basic-link"
+          dropdownToggle
+          (click)="false"
+          aria-controls="basic-link-dropdown">
+          <img src="assets/images/logo.jpg"
+            alt="logo"
+            style="width:40px;">
+          <span class="badge badge-danger mr-1">{{msgCount}}</span>
+        </a>
+        <div id="basic-link-dropdown"
+          *dropdownMenu
+          class="dropdown-menu dropdown-menu-right"
+          role="menu"
+          aria-labelledby="basic-link">
+          <a class="dropdown-item"
+            *ngFor="let choice of items"
+            href="#">{{choice}}</a>
+        </div>
+      </li>
+
+      <!-- <li class="nav-item">
+        <a class="nav-link  dropdown-toggle"
+          href
+          id="basic-link"
+          dropdownToggle
+          (click)="false"
+          aria-controls="basic-link-dropdown">
+          <i class="fa fa-commenting-o"></i>
+        </a>
+        <div id="basic-link-dropdown"
+          *dropdownMenu
+          class="dropdown-menu"
+          role="menu"
+          aria-labelledby="basic-link">
+          <a class="dropdown-item"
+            *ngFor="let choice of items"
+            href="#">{{choice}}</a>
+        </div>
+      </li> -->
+    </ul>
+  </div>
+
+</nav>

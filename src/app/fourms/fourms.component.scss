@@ -1,0 +1,30 @@
+.fourms {
+  background-color: #ffffff;
+  padding-top: 10px;
+  padding-bottom: 20px;
+
+  .header {
+    background-color: #f1f7f7;
+    padding: 10px;
+
+    .fa {
+      margin-right: 20px;
+      margin-left: 20px;
+    }
+  }
+
+  .info-list-row {
+      border-bottom: 1px solid #c6c6cc;
+      padding: 10px;
+    .icon-container {
+      color: #c6c6cc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    span {
+      color: #c6c6cc;
+    }
+  }
+}

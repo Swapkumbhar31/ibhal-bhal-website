@@ -1,0 +1,17 @@
+<div class="group p-2"
+  [routerLink]="[group?.id]">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-2 col-3">
+        <img [src]="'http://iblah-blah.com/iblah/images/'+group?.group_image"
+          class="img-fluid img-responsive"
+          alt="">
+      </div>
+      <div class="col d-flex flex-column justify-content-center p-1">
+        <h6>{{group?.name}}</h6>
+        <span class="count">{{group?.memberCount}} <i class="fa fa-users"></i></span>
+        <span>{{group?.description}}</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+.group{
+    background-color: #ffffff;
+    padding-top: 10px;
+    .cover-image{
+        height: 300px;
+        width: 100%;
+        background-size: cover;
+        background-position: center;
+
+    }
+    .info-container{
+        margin-top: -75px;
+        .image-container {
+            width: 150px;
+            border: 1px solid #00A0DF;
+            height: 150px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+        }
+        .text-container{
+            margin-top: 75px;
+        }
+    }
+    .user-container{
+        overflow: scroll; 
+        height: 120px;
+    }
+    .user-image{
+        width: 75px;
+        margin: 10px;
+            border: 1px solid #00A0DF;
+            height: 75px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+    }
+}

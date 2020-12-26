@@ -1,0 +1,209 @@
+<div class="feed p-2">
+  <div class="card">
+    <div class="card-body">
+      <div class="d-flex">
+        <div>
+          <div class="image-cropper"
+            [ngStyle]="{'background-image':'url('+'http://iblah-blah.com/iblah/images/'+_post?.image+')'}">
+          </div>
+        </div>
+        <div class="d-flex flex-grow-1 p-2 justify-content-center flex-column position-relative">
+          <div class="position-absolute"
+            dropdown
+            placement="bottom right"
+            style="top: 0; right: 0">
+            <i class="fa fa-angle-down"
+              aria-hidden="true"
+              dropdownToggle></i>
+            <div *ngIf="_post.user_id !== _auth.getUserId()">
+              <ul id="dropdown-basic"
+                *dropdownMenu
+                class="dropdown-menu dropdown-menu-right"
+                role="menu"
+                aria-labelledby="button-basic">
+                <li role="menuitem"><a class="dropdown-item"
+                    href="javascript:void(0)"
+                    (click)="hidePost()">Hide for me</a></li>
+                <li role="menuitem"><a class="dropdown-item"
+                    href="javascript:void(0)">Report</a></li>
+              </ul>
+            </div>
+            <div *ngIf="_post.user_id === _auth.getUserId()">
+              <ul id="dropdown-basic"
+                *dropdownMenu
+                class="dropdown-menu dropdown-menu-right"
+                role="menu"
+                aria-labelledby="button-basic">
+                <li role="menuitem"><a class="dropdown-item"
+                    href="javascript:void(0)"
+                    (click)="deletePost()">Delete</a></li>
+                <li role="menuitem"><a class="dropdown-item"
+                    href="javascript:void(0)">Edit post</a></li>
+              </ul>
+            </div>
+
+          </div>
+          <div class="name"><a href="javascript:void(0)">
+              <span class="text-capitalize">{{_post?.name}}</span>
+            </a>
+            <span *ngIf="_post.original_user"> shared a post of
+              <a href="javascript:void(0)">
+                <span class="text-capitalize">{{_post.original_name}}</span></a>
+            </span></div>
+          <div class="time">{{_post?.date | amTimeAgo}}</div>
+        </div>
+      </div>
+      <p class="mt-2">{{_post?.discription}}</p>
+      <div *ngIf="_post?.type === '3'">
+        <a [href]="_post.link"
+          target="_blank">{{_post.link}}</a>
+      </div>
+    </div>
+    <agm-map *ngIf="_post?.type === '2' && images?.length === 0"
+      [latitude]="_post?.lat"
+      [disableDefaultUI]="false"
+      [zoomControl]="false"
+      [mapDraggable]="false"
+      [zoom]="18"
+      [longitude]="_post?.lon">
+      <agm-marker [latitude]="_post?.lat"
+        [longitude]="_post?.lon"></agm-marker>
+    </agm-map>
+    <img *ngIf="images?.length === 1"
+      [src]="images[0]"
+      class="img-fluid img-responsive"
+      alt="">
+    <slideshow *ngIf="images?.length > 1"
+      style="background-color: #b2b4b5;"
+      [height]="525"
+      [minHeight]="'525px'"
+      [autoPlay]="false"
+      [showArrows]="true"
+      [imageUrls]="images"
+      [backgroundSize]="'contain'"
+      [showDots]="true"
+      [lazyLoad]="images?.length > 1"
+      [autoPlayWaitForLazyLoad]="true">
+    </slideshow>
+    <div class="card-footer">
+      <div class="float-left">
+        <button class="btn btn-outline-primary"
+          (click)="openModal(template)">
+          <i class="fa fa-share"></i>
+        </button>
+      </div>
+      <div class="float-right">
+        <button class="btn btn-outline-primary"
+          (click)="toggleFullscreen()">
+          {{_post?.view_count}} <i class="fa fa-eye"></i>
+        </button>
+        &nbsp;
+        <button class="btn btn-outline-primary"
+          (click)="toggleComments()">
+          {{_post?.countcomments}} <i class="fa fa-comment"></i>
+        </button>
+        &nbsp;
+        <button class="btn"
+          (click)="likePost()"
+          [ngClass]="_post?.likestatus === 0 ? 'btn-outline-primary' : 'btn-primary'">
+          {{_post?.countLikes}} <i class="fa fa-thumbs-up"></i>
+        </button>
+      </div>
+    </div>
+    <app-comments *ngIf="isCommentShowing"
+      [comments]="comments"
+      [postId]="_post.post_id"></app-comments>
+  </div>
+</div>
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Share post</h4>
+    <button type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="d-flex">
+      <img *ngIf="_post?.image"
+        class="share-post-thumb"
+        [src]="'http://iblah-blah.com/iblah/images/'+_post?.image"
+        [alt]="_post?.user_id">
+      <div class="p-2"
+        style="width: calc(100% - 80px)">
+        share post of <span *ngIf="_post?.original_name">{{_post?.original_name}}</span><span *ngIf="!_post?.original_name">{{_post?.name}}</span> on your wall
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button"
+      class="btn btn-primary"
+      (click)="confirm()">Yes</button>
+    <button type="button"
+      class="btn btn-default"
+      (click)="decline()">No</button>
+  </div>
+</ng-template>
+<div class="align-items-center backdrop d-flex justify-content-center position-fixed"
+  *ngIf="isFullScreen">
+  <button class="btn btn-outline-primary position-fixed btn-close"
+    (click)="toggleFullscreen()">
+    <i class="fa fa-close"></i>
+  </button>
+  <button class="btn btn-outline-primary position-fixed btn-menu">
+    <i class="fa fa-bars"></i>
+  </button>
+  <img *ngIf="images?.length === 1"
+    [src]="images[0]"
+    class="img-fluid img-responsive"
+    alt="">
+  <slideshow *ngIf="images?.length > 1"
+    style="background-color: #b2b4b5;"
+    [height]="525"
+    [minHeight]="'525px'"
+    [autoPlay]="false"
+    [showArrows]="true"
+    [imageUrls]="images"
+    [backgroundSize]="'contain'"
+    [showDots]="true"
+    [lazyLoad]="images?.length > 1"
+    [autoPlayWaitForLazyLoad]="true">
+  </slideshow>
+  <agm-map *ngIf="_post?.type === '2' && images?.length === 0"
+    [latitude]="_post?.lat"
+    [disableDefaultUI]="false"
+    [zoomControl]="false"
+    [mapDraggable]="false"
+    [zoom]="18"
+    [longitude]="_post?.lon">
+    <agm-marker [latitude]="_post?.lat"
+      [longitude]="_post?.lon"></agm-marker>
+  </agm-map>
+  <div class="position-fixed controls">
+    <p class="mt-2">{{_post?.discription}}</p>
+    <button class="btn btn-outline-primary"
+      (click)="openModal(template)">
+      <i class="fa fa-share"></i>
+    </button>
+    &nbsp;
+    <button class="btn btn-outline-primary"
+      (click)="toggleFullscreen()">
+      {{_post?.view_count}} <i class="fa fa-eye"></i>
+    </button>
+    &nbsp;
+    <button class="btn btn-outline-primary"
+      (click)="toggleComments()">
+      {{_post?.countcomments}} <i class="fa fa-comment"></i>
+    </button>
+    &nbsp;
+    <button class="btn"
+      (click)="likePost()"
+      [ngClass]="_post?.likestatus === 0 ? 'btn-outline-primary' : 'btn-primary'">
+      {{_post?.countLikes}} <i class="fa fa-thumbs-up"></i>
+    </button>
+    &nbsp;
+    <span class="time">{{_post?.date | amTimeAgo}}</span>
+  </div>
+</div>

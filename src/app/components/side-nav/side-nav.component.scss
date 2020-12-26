@@ -1,0 +1,45 @@
+.side-nav {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0px;
+    .profile{
+        background-color: #ffffff;
+        img{
+            border-radius: 50%;
+        }
+        h4{
+            color: #888a8b;
+        }
+    }
+  .list-group-item {
+    border-radius: 0px;
+    background-color: #ffffff;
+    .icon{
+        height: 30px;
+        width: 30px;
+    }
+    .fa{
+        font-size: 24px;
+        color: #ec48ae;
+    }
+    &.active {
+      background-color: #ffffff;
+      color: #888a8b !important;
+      border-color: rgba(0,0,0,.125);
+    }
+  }
+  .list-group-item-action{
+      color: #888a8b;
+      &.active {
+        color: #ffffff;
+      }
+  }
+}
+.image-circle {
+    width: 80px;
+    border: 1px solid #00A0DF;
+    height: 80px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+}

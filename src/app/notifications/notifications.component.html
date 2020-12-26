@@ -1,0 +1,27 @@
+<div class="notifications">
+  <tabset [justified]="true">
+    <tab heading="Notifications">
+      <div class="d-flex p-1 border-bottom"
+        *ngFor="let notification of notifications">
+        <div>
+          <div class="image-circle"
+            [ngStyle]="{'background-image':'url('+'http://iblah-blah.com/iblah/images/'+notification?.image_id+')'}">
+          </div>
+        </div>
+        <div class="notification flex-grow-1 ml-2">
+          <span class="d-block">
+            <b>{{notification?.name}}</b>
+          </span>
+          <span class="d-block">{{notification?.msg}} </span>
+        </div>
+      </div>
+    </tab>
+    <tab heading="Call history">
+
+    </tab>
+  </tabset>
+</div>
+<div class="btn btn-primary fixed-bottom"
+  (click)="clearAllNotification()">
+  Clear All
+</div>

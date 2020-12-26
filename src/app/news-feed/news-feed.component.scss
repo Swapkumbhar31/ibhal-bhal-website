@@ -1,0 +1,50 @@
+.news-feed{
+    .form-control{
+        border: 0px;
+    }
+    .fa {
+        color: #659ed6;
+    }
+    .btn-primary 
+    {
+        .fa {
+            color: #ffffff;
+        }
+    }
+    .sharepost-icons{
+        .fa{
+            cursor: pointer;
+            padding: 10px;
+            font-size: 15px;
+            color: #659ed6;
+            background-color: #ffffff;
+            border: 2px solid #659ed6;
+            border-radius: 50%;
+            &.fa-map-marker{
+                padding: 10px 14px;
+            }
+        }
+    }
+    ::ng-deep video{
+        width: 100%;
+        height: 100%;
+    }
+}
+agm-map {
+    height: 300px;
+}
+.search-box{
+    &:focus{
+        outline: none;
+        box-shadow: none;
+    }
+}
+.image-thumbs{
+    overflow-x: auto;
+    img{
+        margin: 5px;
+    }
+}
+.blue-top-border{
+    border-top: #659ed6 solid 1px;
+}

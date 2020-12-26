@@ -1,0 +1,21 @@
+<div class="pages">
+  <tabset>
+    <tab heading="Pages"
+      (select)="tabChange('showAllPages')">
+      <app-page *ngFor="let page of pages"
+        [page]="page"></app-page>
+      <div *ngIf="pages.length === 0"
+        class="no-data">
+        No pages
+      </div>
+    </tab>
+    <tab heading="My Pages"
+      (select)="tabChange('showMyPages')">
+      <app-page *ngFor="let page of pages"></app-page>
+      <div *ngIf="pages.length === 0"
+        class="no-data">
+        No pages
+      </div>
+    </tab>
+  </tabset>
+</div>

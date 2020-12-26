@@ -1,0 +1,40 @@
+<div class="comments">
+  <div class="comment container mt-2"
+    *ngFor="let comment of _comments">
+    <div class="d-flex">
+      <div class="image-circle-2"
+        [ngStyle]="{'background-image':'url('+'http://iblah-blah.com/iblah/images/'+comment?.image+')'}">
+      </div>
+      <div class="p-2 font-weight-normal"
+        style="width: calc(100% - 80px)">
+        <span class="d-block w-100 text-capitalize">{{comment?.name}} <span class="float-right">{{comment?.date | amTimeAgo}}</span></span>
+        <span class="d-block w-100"> {{comment?.comment}}</span>
+        <span class="d-block">
+          <span [ngClass]="comment?.isCmtLiked === 1 ? 'liked' : ''"
+            (click)="likeComment(comment.comment_id)">
+            <span *ngIf="comment?.isCmtLiked === 1"> {{comment?.countLikes}} </span>
+            Like </span> &nbsp;&nbsp;<span class="text-muted">{{comment?.date | amTimeAgo}}</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="add-comment container mt-2 mb-2">
+    <div class="d-flex align-items-center">
+      <div class="image-circle m-1"
+        [ngStyle]="{'background-image':'url('+'http://iblah-blah.com/iblah/images/'+user?.image+')'}">
+      </div>
+      <input name="comment"
+        type="text"
+        placeholder="Add your comment..."
+        [(ngModel)]="comment"
+        class="form-control m-1 has-feedback"
+        id="comment">
+      <!-- <div class="comment-buttons pull-right btn-group">
+          <i class="fa fa-image"></i>
+        </div> -->
+      <i class="fa fa-image m-2 cursor-pointer"
+        *ngIf="!comment"></i>
+      <i class="fa fa-send m-2 cursor-pointer"
+        (click)="addComment()"></i>
+    </div>
+  </div>
+</div>

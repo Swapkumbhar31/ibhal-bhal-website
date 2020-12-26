@@ -1,0 +1,17 @@
+<div class="marketspace-item">
+  <div class="card">
+    <img [src]="'http://iblah-blah.com/iblah/images/'+list?.image"
+      class="img-fluid img-responsive">
+    <div class="card-body">
+      <h3>{{list?.name}}</h3>
+      <hr>
+      <h5>
+        <i class="fa fa-map-marker"></i>
+        {{list?.country}}
+        <i class="fa fa-angle-double-right"></i>
+        {{list?.city}}
+        <span class="price float-right">$ {{list?.price}}</span>
+      </h5>
+    </div>
+  </div>
+</div>

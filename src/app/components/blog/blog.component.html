@@ -1,0 +1,16 @@
+<div class="blog p-2">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-2 col-3">
+        <img [src]="'http://iblah-blah.com/iblah/images/'+blog?.blog_image"
+          class="img-fluid img-responsive"
+          alt="">
+      </div>
+      <div class="col d-flex flex-column justify-content-center p-1">
+        <h6>{{blog?.name}}</h6>
+        <span class="count">{{blog?.memberCount}} <i class="fa fa-users"></i></span>
+        <span>{{blog?.description}}</span>
+      </div>
+    </div>
+  </div>
+</div>

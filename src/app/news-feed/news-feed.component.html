@@ -1,0 +1,290 @@
+<div class="news-feed">
+  <div class="container-fluid text-center bg-gray sticky-top sharepost-icons">
+    <div class="row">
+      <div class="col-4 p-2"
+        (click)="postText()">
+        <i class="fa fa-pencil"></i>
+      </div>
+      <div class="col-4 p-2">
+        <i class="fa fa-camera"
+          (click)="postImage()"></i>
+      </div>
+      <div class="col-4 p-2">
+        <i class="fa fa-map-marker"
+          (click)="postLocation()"></i>
+      </div>
+    </div>
+  </div>
+  <div class="test-post m-2"
+    *ngIf="postingType === 'text' || postingType === 'link'">
+    <div class="card">
+      <div class="card-header bg-primary">
+        <div class="d-flex justify-content-between align-items-center">
+          <button class="btn btn-primary"
+            (click)="closePosting()">Cancel</button>
+          <span class="font-weight-bold text-white">Update status</span>
+          <button class="btn btn-primary"
+            (click)="shareTextPost()">Save</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="d-flex">
+          <textarea type="text"
+            name="feed"
+            id="feed"
+            rows="5"
+            [(ngModel)]="postDecription"
+            placeholder="whats on your mind"
+            class="form-control"></textarea>
+          <input type="file"
+            name="pic"
+            accept="image/*"
+            multiple
+            id='fileUploadBtn'
+            (change)="handleFileInput($event.target.files)"
+            hidden>
+          <i class="fa fa-globe ml-2 fa-2x"
+            (click)="openModal(postTypeModal)">
+          </i>
+          <!-- <div dropdown
+            placement="bottom right">
+            <div class="position-relative">
+              <ul id="dropdown-basic"
+                *dropdownMenu
+                class="dropdown-menu dropdown-menu-right"
+                role="menu"
+                aria-labelledby="button-basic">
+                <li role="menuitem">
+                  <a class="dropdown-item active"
+                    href="javascript:void(0)"
+                    (click)="hidePost()">Everyone</a>
+                </li>
+                <li role="menuitem">
+                  <a class="dropdown-item"
+                    href="javascript:void(0)">Friends</a>
+                </li>
+                <li role="menuitem">
+                  <a class="dropdown-item"
+                    href="javascript:void(0)">Friends of Friends</a>
+                </li>
+                <li role="menuitem">
+                  <a class="dropdown-item"
+                    href="javascript:void(0)">Only Me</a>
+                </li>
+              </ul>
+            </div>
+          </div> -->
+        </div>
+        <p class="mt-2"
+          *ngIf="taggedFriendList.length > 0 && postingType !== 'link'">Tagged with friends {{taggedFriendsName}}</p>
+        <p class="mt-2"
+          *ngIf="fileThumbs.length > 0 && postingType !== 'link'">Images</p>
+        <div class="d-flex image-thumbs"
+          *ngIf="fileThumbs.length > 0 && postingType !== 'link'">
+          <img [src]="thumbs"
+            *ngFor="let thumbs of fileThumbs"
+            height="60"
+            alt="Image preview...">
+        </div>
+        <input class="form-control mt-2"
+          [(ngModel)]="linkText"
+          placeholder="Enter your link here..."
+          *ngIf="postingType === 'link'">
+      </div>
+      <div class="card-footer blue-top-border">
+        <div class="d-flex justify-content-between">
+          <button class="btn btn-default"
+            [disabled]="postingType === 'link'"
+            (click)="postImage()">
+            <i class="fa fa-camera fa-2x"></i>
+          </button>
+          <button class="btn btn-default"
+            [disabled]="postingType === 'link'"
+            (click)="openModal(frinedsListModal, loadFriends.bind(this))">
+            <i class="fa fa-tag fa-2x cursor-pointer"></i>
+          </button>
+          <button class="btn btn-default"
+            [disabled]="postingType === 'link'"
+            (click)="openSelectFile()">
+            <i class="fa fa-photo fa-2x cursor-pointer"></i>
+          </button>
+          <button class="btn btn-default"
+            [disabled]="postingType === 'link'"
+            (click)="postLocation()">
+            <i class="fa fa-map-marker fa-2x cursor-pointer"></i></button>
+          <button class="btn btn-default"
+            [ngClass]="{'btn-primary text-white' : postingType === 'link'}"
+            (click)="toggleLinkPost()">
+            <i class="fa fa-paperclip fa-2x cursor-pointer"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="location-post m-2"
+    *ngIf="postingType === 'location'">
+    <div class="card">
+      <div class="card-header">
+        <div class="d-flex justify-content-between border-1">
+          <button class="btn btn-default">
+            <i class="fa fa-search"></i>
+          </button>
+          <input type="text"
+            placeholder="Search your place"
+            class="form-control outline-none search-box">
+        </div>
+      </div>
+      <div class="card-body">
+        <agm-map *ngIf="location?.lat || location?.lon"
+          [latitude]="location?.lat"
+          [disableDefaultUI]="false"
+          [zoomControl]="false"
+          [mapDraggable]="false"
+          [zoom]="18"
+          [longitude]="location?.lon">
+          <agm-marker [latitude]="location?.lat"
+            [longitude]="location?.lon"></agm-marker>
+        </agm-map>
+        <span class="mt-2 d-block"
+          *ngIf="taggedFriendList.length > 0 && postingType === 'location'"> with {{taggedFriendsName}}</span>
+      </div>
+      <div class="card-header">
+        <div class="d-flex justify-content-between">
+          <button class="btn btn-default"
+            (click)="closePosting()">Cancel</button>
+          <button class="btn btn-primary"
+            (click)="shareLocationPost()">Share</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="image-post m-2"
+    *ngIf="postingType === 'image'">
+    <div class="card">
+      <div class="card-header text-center">
+        Take a picture
+      </div>
+      <div class="card-body">
+        <webcam *ngIf="postingType === 'image'"></webcam>
+      </div>
+      <div class="card-footer blue-top-border">
+        <div class="d-flex justify-content-between">
+          <button class="btn btn-default"
+            (click)="closePosting()">Cancel</button>
+          <button class="btn btn-primary">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div detect-scroll
+    [bottomOffset]="10"
+    (onScroll)="handleScroll($event)">
+    <app-feed *ngFor="let post of posts"
+      (postDeleted)="postDeleted($event)"
+      [post]="post"></app-feed>
+  </div>
+</div>
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Share post</h4>
+    <button type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <textarea class="form-control"></textarea>
+  </div>
+  <div class="modal-footer">
+    <button type="button"
+      class="btn btn-primary"
+      (click)="shareLink()">Share</button>
+    <button type="button"
+      class="btn btn-default"
+      (click)="modalRef.hide()">Cancel</button>
+  </div>
+</ng-template>
+<ng-template #postTypeModal>
+  <div class="modal-body">
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio"
+          [checked]="posttype === '0'"
+          class="form-check-input"
+          (click)="posttype = '0'"
+          name="postType">Everyone
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio"
+          class="form-check-input"
+          [checked]="posttype === '1'"
+          (click)="posttype = '1'"
+          name="postType">Friends
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio"
+          class="form-check-input"
+          (click)="posttype = '2'"
+          [checked]="posttype === '2'"
+          name="postType">Friends of Friends
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio"
+          [checked]="posttype === '3'"
+          (click)="posttype = '3'"
+          class="form-check-input"
+          name="postType">Only Me
+      </label>
+    </div>
+  </div>
+  <!-- <div class="modal-footer">
+    <button type="button"
+      class="btn btn-primary"
+      (click)="shareLink()">Share</button>
+    <button type="button"
+      class="btn btn-default"
+      (click)="modalRef.hide()">Cancel</button>
+  </div> -->
+</ng-template>
+
+<ng-template #frinedsListModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Share post</h4>
+    <button type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container-fluid">
+      <div class="row">
+        <div *ngFor="let friend of friendList"
+          class="col-4">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="checkbox"
+                class="form-check-input"
+                (change)="tagFriend($event, friend)"
+                [checked]="isTagged(friend)">{{friend.name}}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button"
+      class="btn btn-primary"
+      (click)="modalRef.hide()">Tag</button>
+  </div>
+</ng-template>

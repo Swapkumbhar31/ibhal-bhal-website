@@ -1,0 +1,22 @@
+<div class="blogs">
+  <tabset>
+    <tab heading="Blogs"
+      (select)="tabChange('showAllBlogs')">
+      <app-blog *ngFor="let blog of blogs"
+        [blog]="blog"></app-blog>
+      <div *ngIf="blogs.length === 0"
+        class="no-data">
+        No groups blogs
+      </div>
+    </tab>
+    <tab heading="My Blogs"
+      (select)="tabChange('showMyBlogs')">
+      <app-blog *ngFor="let blog of blogs"
+        [blog]="blog"></app-blog>
+      <div *ngIf="blogs.length === 0"
+        class="no-data">
+        No groups my blogs
+      </div>
+    </tab>
+  </tabset>
+</div>
